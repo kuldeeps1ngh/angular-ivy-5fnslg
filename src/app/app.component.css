@@ -1,0 +1,18 @@
+p {
+  font-family: Lato;
+}
+.nav-link {
+  cursor: pointer;
+}
+.active {
+  cursor: default;
+}
+.invalid {
+  color: red;
+}
+.contain {
+  margin-top: 20px;
+}
+.btnClass {
+  margin-top: 10px;
+}

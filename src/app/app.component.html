@@ -1,0 +1,115 @@
+<div class="container">
+  <hello name="{{ name }}"></hello>
+
+
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link" (click)="selectedTab=tabs[0]"
+    [ngClass]="{'active' : selectedTab===tabs[0]}">Today's Task</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="selectedTab=tabs[1]"
+    [ngClass]="{'active' : selectedTab===tabs[1]}">Pending</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="selectedTab=tabs[2]"
+    [ngClass]="{'active' : selectedTab===tabs[2]}">Abandon</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="selectedTab=tabs[3]"
+    [ngClass]="{'active' : selectedTab===tabs[3]}">Completed</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="selectedTab=tabs[4]"
+    [ngClass]="{'active' : selectedTab===tabs[4]}">In-Progress</a>
+</ul>
+
+  <div class="tab-content clearfix">
+			  <div class="tab-pane" [ngClass]="{'active' : selectedTab===tabs[0]}">
+          <h3>Today's Task List</h3>
+          <div>
+            <input class="form-control" placeholder="search task" (input)="search($event, tabs[0])">
+          </div>
+          <ul class="list-group">
+            <ng-container *ngFor="let item of todayTask">
+              <div class="row">
+                <div class="col-md-2 col-xs-4">
+                  <button class="btn btn-info" (click)="progress(item)">In-Progress</button> 
+                </div>
+                <div class="col-md-2 col-xs-4">
+                  <button class="btn btn-warning" (click)="pending(item)">Pending</button> 
+                </div>
+                <div class="col-md-8 col-xs-4">
+                  <li class="list-group-item" >{{item}}</li>
+                </div>
+              </div>           
+            </ng-container>
+          </ul>
+          <div class="col-md-12 contain">
+            <input class="form-control" [(ngModel)]="taskVal">
+            <div *ngIf="submitted && !taskVal">
+              <p class="invalid">Please input task name first !</p>
+            </div>
+            <button class="btn btn-secondary btnClass" (click)="addTask()">Add Task</button>
+          </div>
+				</div>
+	</div>
+  <div class="tab-content clearfix">
+			  <div class="tab-pane " [ngClass]="{'active' : selectedTab===tabs[1]}">
+          <h3>Pending Task List</h3>
+          <ul class="list-group">
+            <ng-container *ngFor="let item of pendingTask">
+              <div class="row">
+                <div class="col-md-2">
+                  <button class="btn btn-success" (click)="done(item)">Done</button> 
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-danger" (click)="cancel(item)">Cancel</button> 
+                </div>
+                <div class="col-md-8">
+                  <li class="list-group-item" >{{item}}</li>
+                </div>
+              </div>           
+            </ng-container>
+            
+          </ul>
+				</div>
+	</div>
+  <div class="tab-content clearfix">
+			  <div class="tab-pane " [ngClass]="{'active' : selectedTab===tabs[2]}">
+          <h3>Abandoned Task List</h3>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of abandonTask">{{item}}</li>
+          </ul>
+				</div>
+	</div>
+  <div class="tab-content clearfix">
+			  <div class="tab-pane " [ngClass]="{'active' : selectedTab===tabs[3]}">
+          <h3>Completed Task List</h3>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of compeltedTask">{{item}}</li>
+          </ul>
+				</div>
+	</div>
+  <div class="tab-content clearfix">
+			  <div class="tab-pane " [ngClass]="{'active' : selectedTab===tabs[4]}">
+          <h3>In-Progress Task List</h3>
+          <ul class="list-group">
+            <ng-container *ngFor="let item of progressTask">
+              <div class="row">
+                <div class="col-md-2">
+                  <button class="btn btn-success" (click)="doneProgress(item)">Done</button> 
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-warning" (click)="pendingProgress(item)">Pending</button> 
+                </div>
+                <div class="col-md-8">
+                  <li class="list-group-item" >{{item}}</li>
+                </div>
+              </div>           
+            </ng-container>
+          </ul>
+				</div>
+	</div>
+
+</div>
