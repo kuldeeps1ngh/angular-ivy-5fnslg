@@ -61,7 +61,7 @@ export class AppComponent  {
     const val = e.target.value;
     switch (type) {
       case this.tabs[0]:
-        const backup = [...this.todayTask]
+        const backup = [...this.todayTask];
         if (!val) {
           
         }
